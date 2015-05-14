@@ -563,7 +563,7 @@ public class AppMain extends ActivityGroup{
  			MumuWeiboUtility.LoginUser=null;
  			MumuWeiboUtility.isSeized=false;
  			 showView(1);  
-  			//getEmotion(); 	
+  			getEmotion(); 	
  			 downloadEmotion();
  			setUserInfo();
  		}
@@ -591,7 +591,7 @@ public class AppMain extends ActivityGroup{
 	}
 	
 	//获取表情
-		public  void getEmotion()
+		private  void getEmotion()
 		{		
 			try {
 				FileInputStream fis=AppMain.this.openFileInput("EmotionHashMap.dat");
@@ -633,8 +633,6 @@ public class AppMain extends ActivityGroup{
 				
 				api6.emotions(EMOTION_TYPE.CARTOON, LANGUAGE.cnname, new EmotionListener());
 				
-				api6.emotions(EMOTION_TYPE.FACE, LANGUAGE.twname, new EmotionListener());
-							
 				//end get emotion form internet					
 			}			
 	}
@@ -646,11 +644,8 @@ public class AppMain extends ActivityGroup{
 		public void onComplete(String arg0) {
 			// TODO Auto-generated method stub
 			EmotionParser.parse(arg0);
-			if(EmotionParser.count==4)
-				{
-					saveEmotion();
-					downloadEmotion(); 
-				}
+			saveEmotion();
+			downloadEmotion();
 		}
 
 	
