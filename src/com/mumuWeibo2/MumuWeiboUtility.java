@@ -591,7 +591,7 @@ public class MumuWeiboUtility {
 		int start;
 		int end;
 		 for(int i=0;i<s.length();)
-		 {			
+		 {
 			 end=s.indexOf(']', i);
 			 if(end==-1)break;
 			 start=s.substring(0, end).lastIndexOf('[');

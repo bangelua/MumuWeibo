@@ -40,7 +40,7 @@ public class AsyncBitmapLoader {
 			 if(imageURL==null)return;
 			 final String filePath=MumuWeiboUtility.emotionSaveDir+imageURL.replace('/', '%').replace(':', '%');  	        
 		     final File file=new File(filePath); 
-			 if(file.exists()){				
+			 if(file.exists()){
 				 	setEmotionByFile(file,tv,sp,start,end);
 		        }
 			 else {
@@ -81,16 +81,14 @@ public class AsyncBitmapLoader {
 	    		 if(d==null)return;
 	    		 
 				 InputStream is=new FileInputStream(file);
-							       
-			        AnimatedGifDrawable dd=new AnimatedGifDrawable(is, new AnimatedGifDrawable.UpdateListener() {
+			        AnimatedGifDrawable dd=new AnimatedGifDrawable(is,   tv.getLineHeight(), new AnimatedGifDrawable.UpdateListener() {
 			            @Override
 			            public void update() {
 			                tv.postInvalidate();
 			            }
 			        });
-			       
-			        AnimatedImageSpan as=new AnimatedImageSpan(dd);	
-			        
+			     
+			        AnimatedImageSpan as=new AnimatedImageSpan(dd);
 			        sp.setSpan(as, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			       tv.setText(sp);
 			       as=null;
