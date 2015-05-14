@@ -600,18 +600,11 @@ public class MumuWeiboUtility {
 			 end++;
 			 String emotionName=s.substring(start,end);
 			 final AsyncBitmapLoader async=new AsyncBitmapLoader();
-			 
-			 final String name=emotionName;
-			 final SpannableStringBuilder sp1=sp;
-			 final int start1=start;
-			 final int end1=end;
-			
-			 async.setEmotion(tv, sp, emotionName, start, end);				
+			 async.setEmotion(tv, sp, emotionName, start, end);
 			 				 
 			 i=end;			 
 		 }//表情设置结束		 	 
 		
-		// tv.setText(sp);
 	 }
 	 
 	 //设置微博表情显示方法一：如果表情图片不存在，可以根据表情名下载表情，完成后再下一次会显示该表情。

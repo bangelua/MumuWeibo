@@ -601,7 +601,10 @@ private Handler handler=new Handler();
 	private void getMoreAtMe(){
 			
 		prePos=MumuWeiboUtility.AtMsgList.size();
-		final long maxId=MumuWeiboUtility.AtMsgList.get(prePos-1).getId()-1;	
+		long maxId= Long.MAX_VALUE;
+		if (prePos > 0) {
+			maxId = MumuWeiboUtility.AtMsgList.get(prePos - 1).getId() - 1;
+		}
 		
 		api.mentions(0, maxId, 20, 1, AUTHOR_FILTER.ALL, SRC_FILTER.ALL, TYPE_FILTER.ALL, false, new GetMoreAtListener());
 				

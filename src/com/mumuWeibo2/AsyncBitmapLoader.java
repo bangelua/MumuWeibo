@@ -82,23 +82,15 @@ public class AsyncBitmapLoader {
 	    		 
 				 InputStream is=new FileInputStream(file);
 							       
-			        AnimatedGifDrawable dd=new AnimatedGifDrawable(is, new AnimatedGifDrawable.UpdateListener() {   
+			        AnimatedGifDrawable dd=new AnimatedGifDrawable(is, new AnimatedGifDrawable.UpdateListener() {
 			            @Override
 			            public void update() {
 			                tv.postInvalidate();
 			            }
 			        });
-			        
-			        
-			        if(dd==null)
-			        	{
-			        		file.delete();
-			        		return;//test
-			        	}
 			       
 			        AnimatedImageSpan as=new AnimatedImageSpan(dd);	
 			        
-			        if(null==as)return; //test
 			        sp.setSpan(as, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			       tv.setText(sp);
 			       as=null;
@@ -141,30 +133,15 @@ public class AsyncBitmapLoader {
 							}	
 		        }	 
 		       
-		        final Handler handler0 = new Handler()  
-		        {  	           
-		            @Override  
-		            public void handleMessage(Message msg)  
-		            {  
-		            	//Bitmap bbb=(Bitmap)msg.obj;
-		                // TODO Auto-generated method stub  
-		            	//return (bbb);
-		               // imageCallBack.imageLoad(imageView, (Bitmap)msg.obj);  
-		            }  
-		        };  
-		       
 		        //如果不在内存缓存中，也不在本地（被jvm回收掉），则开启线程下载图片 	     	        
 		        new Thread()  
 		        {  		            
 		            @Override  
 		            public void run()  
 		            {  
-		                // TODO Auto-generated method stub  	             
 		                Drawable bitmap = MumuWeiboUtility.getImageFromUrl(imageURL,MumuWeiboUtility.emotionSaveDir);  	 
 		                if(bitmap!=null)
 		                imageCache00.put(imageURL, new SoftReference<Drawable>(bitmap)); 			               
-		               // MumuWeiboUtility.saveImage2Sdcard(imageURL, bitmap,MumuWeiboUtility.emotionSaveDir);
-		                         
 		            }  
 		        }.start();  	  
 		   
