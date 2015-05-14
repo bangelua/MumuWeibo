@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo.State;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,22 +28,27 @@ public class OneWeiboView extends LinearLayout{
 	TextView createTimeOfSourceWeibo;
 	TextView weiboCountsOfSourceWeibo;
 	
-	String weiboSmallPicUrl;
-	String retWeiboSmallPicUrl;
+//	String weiboSmallPicUrl;
+	String weiboMiddlePicUrl;
+//	String retWeiboSmallPicUrl;
+	String retWeiboMiddlePicUrl;
 		
 	String weiboOriginalPicUrl;
 	String retWeiboOriginalPicUrl;
+	private Context mContext;
 	
 	AsyncBitmapLoader async=new AsyncBitmapLoader();
 
 	public OneWeiboView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		mContext = context;
 		init();
 		// TODO Auto-generated constructor stub
 	}
 	
 	public OneWeiboView(Context context) {
 		super(context);
+		mContext = context;
 		init();
 		// TODO Auto-generated constructor stub
 	}
@@ -64,7 +68,13 @@ public class OneWeiboView extends LinearLayout{
 		createTimeOfSourceWeibo=(TextView)findViewById(R.id.create_time_of_source_weibo);
 		weiboCountsOfSourceWeibo=(TextView)findViewById(R.id.weibo_counts_of_source_weibo);
 				
-		
+//		WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+//		Display display = wm.getDefaultDisplay();
+//		Point size = new Point();
+//		display.getSize(size);
+//		int picSize = size.x/3;
+//		weiboPic.getLayoutParams().height = picSize;
+//		weiboPic.getLayoutParams().width = picSize;
 		weiboPic.setOnClickListener(lis);
 		retWeiboPic.setOnClickListener(lis);
 	}	
@@ -94,9 +104,10 @@ public class OneWeiboView extends LinearLayout{
 		}
 		
 		
-		weiboSmallPicUrl=weiboInfo.getWeiboPicSmall();
+//		weiboSmallPicUrl=weiboInfo.getWeiboPicSmall();
+		weiboMiddlePicUrl = weiboInfo.getWeiboPicMiddle();
 		
-		if(weiboSmallPicUrl==null || weiboSmallPicUrl.equals("") || isShowImage==false)
+		if(weiboMiddlePicUrl==null || weiboMiddlePicUrl.equals("") || isShowImage==false)
 		{
 			weiboPic.setVisibility(View.GONE);
 		}
@@ -105,7 +116,7 @@ public class OneWeiboView extends LinearLayout{
 			weiboPic.setVisibility(View.VISIBLE);
 			weiboOriginalPicUrl=weiboInfo.getWeiboPicOriginal();
 			//if(async.mGifTask!=null)async.mGifTask.stop();
-			async.loadBitmap(weiboPic, MumuWeiboUtility.IMAGE_TYPE.PIC,weiboSmallPicUrl);			
+			async.loadBitmap(weiboPic, MumuWeiboUtility.IMAGE_TYPE.PIC,weiboMiddlePicUrl);			
 		}
 		
 		sourceFrom.setText("来自"+weiboInfo.getSourceName());
@@ -141,9 +152,10 @@ public class OneWeiboView extends LinearLayout{
 		
 		MumuWeiboUtility.FormatWeibo(getContext(),retWeiboText, "@"+user.getName()+":"+retWeibo.getWeiboText(), false);
 		
-		retWeiboSmallPicUrl=retWeibo.getWeiboPicSmall();
+//		retWeiboSmallPicUrl=retWeibo.getWeiboPicSmall();
+		retWeiboMiddlePicUrl = retWeibo.getWeiboPicMiddle();
 		
-		if(retWeiboSmallPicUrl==null || retWeiboSmallPicUrl.equals("")|| isShowImage==false)
+		if(retWeiboMiddlePicUrl==null || retWeiboMiddlePicUrl.equals("")|| isShowImage==false)
 		{
 			retWeiboPic.setVisibility(View.GONE);
 		}
@@ -151,7 +163,7 @@ public class OneWeiboView extends LinearLayout{
 		{
 			retWeiboPic.setVisibility(View.VISIBLE);
 			//if(async.mGifTask!=null)async.mGifTask.stop();
-			async.loadBitmap(retWeiboPic, MumuWeiboUtility.IMAGE_TYPE.PIC,retWeiboSmallPicUrl);
+			async.loadBitmap(retWeiboPic, MumuWeiboUtility.IMAGE_TYPE.PIC,retWeiboMiddlePicUrl);
 			retWeiboOriginalPicUrl=retWeibo.getWeiboPicOriginal();
 		}
 		}
@@ -169,7 +181,7 @@ public class OneWeiboView extends LinearLayout{
 			{
 				Intent i=new Intent();
 				i.setClass(getContext(),WeiboImageShow.class);
-				i.putExtra("IMAGE_URL_SMALL",weiboSmallPicUrl);
+				i.putExtra("IMAGE_URL_SMALL",weiboMiddlePicUrl);
 				i.putExtra("IMAGE_URL_ORIGINAL", weiboOriginalPicUrl);
 				getContext().startActivity(i);
 			}
@@ -177,7 +189,7 @@ public class OneWeiboView extends LinearLayout{
 				
 				Intent i=new Intent();
 				i.setClass(getContext(),WeiboImageShow.class);
-				i.putExtra("IMAGE_URL_SMALL",retWeiboSmallPicUrl);
+				i.putExtra("IMAGE_URL_SMALL",retWeiboMiddlePicUrl);
 				i.putExtra("IMAGE_URL_ORIGINAL", retWeiboOriginalPicUrl);
 				getContext().startActivity(i);
 			}

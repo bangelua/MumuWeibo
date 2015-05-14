@@ -24,6 +24,8 @@ public class WeiboParser {
 		weiboInfo.setCreateTime(wei.optString("created_at"));
 		weiboInfo.setWeiboId(wei.optString("idstr"));		
 		weiboInfo.setWeiboPicSmall(wei.optString("thumbnail_pic"));		
+		weiboInfo.setWeiboMiddlePicUrl(wei.optString("bmiddle_pic"));
+		 
 		weiboInfo.setWeiboPicOriginal(wei.optString("original_pic"));
 		weiboInfo.setIsFavorate(wei.optBoolean("favorited"));
 		weiboInfo.setCommentCount(wei.optInt("comments_count"));

@@ -2,6 +2,8 @@ package com.mumuWeibo2;
 
 import java.io.Serializable;
 
+import android.text.TextUtils;
+
 public class WeiboInfo implements Serializable{
 	
 	//一条微博包含的信息
@@ -10,6 +12,7 @@ public class WeiboInfo implements Serializable{
 		
 	private String weiboPicSmall="";  //用户原创微博的小图片地址
 	private String weiboPicOriginal="";	
+	private String mWeiboMiddlePicUrl = "";
 	
 	private String weiboId="";
 	
@@ -134,9 +137,24 @@ public class WeiboInfo implements Serializable{
 	{
 		weiboPicSmall=pic;
 	}
+	
+	public void setWeiboMiddlePicUrl(String midPicUrl){
+		mWeiboMiddlePicUrl = midPicUrl;
+		
+	}
+	
+	public String getWeiboPicMiddle() {
+		return mWeiboMiddlePicUrl;
+	}
+	
 	public String getWeiboPicSmall()
-	{
-		return weiboPicSmall;
+ {
+		if (TextUtils.isEmpty(mWeiboMiddlePicUrl)) {
+			return weiboPicSmall;
+		} else {
+			return getWeiboPicMiddle();// fake, be care!
+		}
+
 	}
 	
 	public void setWeiboPicOriginal(String pic)

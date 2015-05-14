@@ -20,11 +20,12 @@
  	        android:id="@+id/weibo_picture_in_one"
  	        android:src="@drawable/default_image_wait"
  	        android:layout_width="wrap_content"
- 	        android:layout_height="wrap_content" 	 
+ 	        android:layout_height="100dp" 	 
  	        android:layout_gravity="center_horizontal"  	        
  	        android:background="@drawable/image_bd"
-            android:minWidth="40dip"
-            android:minHeight="40dip"
+            android:minWidth="100dip"
+            android:minHeight="100dip"
+            android:maxHeight="100dp"
  	        />
  	    <RelativeLayout 
  	        android:id="@+id/weibo_msg_dialog_holder_in_one"
@@ -43,12 +44,13 @@
  	        />
  	    <ImageView
  	         android:layout_width="wrap_content"
- 	        android:layout_height="wrap_content" 
+ 	        android:layout_height="100dp"
  	        android:id="@+id/retweet_weibo_picture_in_one"
  	        android:layout_below="@id/retweet_weibo_text_in_one"
  	        android:layout_centerHorizontal="true"
- 	        android:minWidth="40dip"
-            android:minHeight="40dip"
+ 	        android:minWidth="100dip"
+            android:minHeight="100dip"
+            android:maxHeight="100dp"
              android:src="@drawable/default_image_wait"
  	         android:background="@drawable/ret_image_bd"   
  	             
